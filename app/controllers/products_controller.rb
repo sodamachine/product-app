@@ -14,6 +14,12 @@ class ProductsController < ApplicationController
 
     def create
         @product = Product.new(product_params)
+        if @product.save
+            redirect_to product_path(@product)
+        else
+            @errors = @product.errors.full_messages
+            render :new
+        end
     end
 
     def edit
@@ -22,6 +28,12 @@ class ProductsController < ApplicationController
 
     def update
         @product = Product.find_by(id: params[:id])
+        if @product.update(product_params)
+            redirect_to product_path(@product)
+        else
+            @errors = @product.errors.full_messages
+            render :edit
+        end
     end
 
     def destroy
