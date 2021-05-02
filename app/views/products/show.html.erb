@@ -1,4 +1,8 @@
 <h1><%=@product.name%></h1>
 
+<%@product.solutions.each do |m|%>
+    <li><%=m.ingredient%> - <%m.concern%></li>
+<%end%><br>
+
 <%=link_to "Edit this product", edit_product_path(@product) %><br>
 <%=link_to "Delete this product", @product, method: :delete %>

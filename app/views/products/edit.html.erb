@@ -7,5 +7,11 @@
 <%=form_for @product do |f| %>
     <%=f.label "Product Name:" %>
     <%=f.text_field :name %>
+    <%=f.fields_for :solutions do |s| %>
+        <%=s.label "Ingredient"%>
+        <%=s.text_field :ingredient %>
+        <%=s.label "Concern" %>
+        <%=s.text_field :concern%>
+    <%end%>
     <%=f.submit "Save" %>
 <%end%>
