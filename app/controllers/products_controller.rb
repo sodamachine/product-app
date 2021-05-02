@@ -10,6 +10,7 @@ class ProductsController < ApplicationController
 
     def new
         @product = Product.new
+        @product.solutions.build
     end
 
     def create
@@ -45,7 +46,7 @@ class ProductsController < ApplicationController
     private
 
         def product_params
-            params.require(:product).permit(:name)
+            params.require(:product).permit(:name, solutions_attributes: [:ingredient, :concern])
         end
 
 end
