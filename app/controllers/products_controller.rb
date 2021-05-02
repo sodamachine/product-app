@@ -46,7 +46,7 @@ class ProductsController < ApplicationController
     private
 
         def product_params
-            params.require(:product).permit(:name, solutions_attributes: [:ingredient, :concern])
+            params.require(:product).permit(:name, :brand, solutions_attributes: [:ingredient, :description])
         end
 
 end

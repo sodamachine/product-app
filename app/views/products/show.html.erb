@@ -1,7 +1,8 @@
 <h1><%=@product.name%></h1>
+<h3><%=@product.brand%></h3>
 
 <%@product.solutions.each do |m|%>
-    <li><%=m.ingredient%> - <%m.concern%></li>
+    <li><%=m.ingredient%> - <%=m.description%></li>
 <%end%><br>
 
 <%=link_to "Edit this product", edit_product_path(@product) %><br>

@@ -1,8 +1,8 @@
 <%= form_for(@solution) do |f|%>
     <%=f.label "Ingredient"%>
     <%=f.text_field(:ingredient)%>
-    <%=f.label "Concern"%>
-    <%=f.text_field(:concern)%>
+    <%=f.label "Description"%>
+    <%=f.text_area(:description)%>
     <%=f.label "Product"%>
     <%=f.collection_select(:product_id, @products, :id, :name) %>
     <%=f.submit("Save")%>
