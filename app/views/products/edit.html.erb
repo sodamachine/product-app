@@ -1,5 +1,9 @@
 <h1>Edit <%=@product.name%></h1>
 
+<% @errors && @errors.each do |e| %>
+    <li><%=e%></li>
+<%end%><br>
+
 <%=form_for @product do |f| %>
     <%=f.label "Product Name:" %>
     <%=f.text_field :name %>
