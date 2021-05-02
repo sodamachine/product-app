@@ -1,0 +1,7 @@
+<h3>Edit @product.name</h1>
+
+<%=form_for @product do |f| %>
+    <%=f.label "Product Name:" %>
+    <%=f.text_field :name %>
+    <%=f.submit "Save" %>
+<%end%>
