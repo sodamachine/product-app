@@ -6,10 +6,6 @@ class ProductsController < ApplicationController
         @products = Product.all
     end
 
-    def show
-        #set_product
-    end
-
     def new
         @product = Product.new
         @product.solutions.build
@@ -25,12 +21,7 @@ class ProductsController < ApplicationController
         end
     end
 
-    def edit
-        #set_product
-    end
-
     def update
-        #set_product
         if @product.update(product_params)
             redirect_to product_path(@product)
         else
@@ -40,7 +31,6 @@ class ProductsController < ApplicationController
     end
 
     def destroy
-        #set_product
         @product.delete
         redirect_to products_path
     end
