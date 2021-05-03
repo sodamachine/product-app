@@ -13,8 +13,10 @@
   <body>
     <%=link_to "All Products", products_path %> - 
     <%=link_to "New Product", new_product_path %> - 
+    <%=link_to "All Solutions", solutions_path %> - 
     <%=link_to "New Solution", new_solution_path %> - 
-    <%=link_to "All Solutions", solutions_path %>
+    <%=link_to "My Products", user_products_path(current_user) %> - 
+
     <%= yield %>
   </body>
 </html>

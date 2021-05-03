@@ -3,7 +3,12 @@ class ProductsController < ApplicationController
     before_action :set_product, except: [:index, :new, :create]
 
     def index
-        @products = Product.all
+        if params[:user_id]
+            user = User.find_by(id: params[:user_id])
+            @products = user.products
+        else
+            @products = Product.all
+        end
     end
 
     def new
