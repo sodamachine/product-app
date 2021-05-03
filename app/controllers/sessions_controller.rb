@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
             session[:user_id] = @user_id
             redirect_to user_products_path(@user)
         else
+            @errors = @user.errors.full_messages
             render :new
         end
     end
