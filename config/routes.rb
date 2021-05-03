@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   resources :products
   resources :solutions
-  resources :users
+  
+  resources :users do
+    resources :products
+  end
 
 end
