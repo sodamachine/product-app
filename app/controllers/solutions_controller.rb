@@ -5,13 +5,29 @@ class SolutionsController < ApplicationController
     end
     
     def new
-        @solution = Solution.new
-        @products = Product.all
+        if params[:product_id]
+            @product = Product.find_by(id: params[:product_id])
+            @solution = @product.solutions.build
+        else
+            @solution = Solution.new
+            @products = Product.all
+        end
     end
 
     def create
         @solution = Solution.create(solution_params)
+        @solution.user = current_user
+        if params[:item_id]
+            @solution.product_id = params[:product_id]
+        end
+        @solution.save
         redirect_to products_path
+    end
+
+    def edit
+    end
+
+    def update
     end
 
     private

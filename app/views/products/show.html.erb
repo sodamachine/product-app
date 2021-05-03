@@ -3,5 +3,6 @@
 
 <%=render partial: 'solutions/solutions', locals: {solutions: @product.solutions, index: false}%><br>
 
+<%=link_to "Add Product"%>, new_product_solution_path(@product) %><br>
 <%=link_to "Edit this product", edit_product_path(@product) %><br>
 <%=link_to "Delete this product", @product, method: :delete %>
