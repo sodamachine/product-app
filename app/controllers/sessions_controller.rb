@@ -4,12 +4,15 @@ class SessionsController < ApplicationController
     end
 
     def create
-        @user = User.find_by(username: params[:username])
-        if @user && @user.authenticate
+        @user = User.find_by(username: params[:user][:username])
+        if @user && @user.authenticate(params[:user][:username])
             session[:user_id] = @user_id
             redirect_to user_products_path(@user)
+        elsif @user
+            @errors = ["Invalid Password"]
+            render :new
         else
-            @errors = @user.errors.full_messages
+            @errors = ["Invalid Username"]
             render :new
         end
     end
