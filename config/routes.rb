@@ -1,16 +1,15 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  resources :users, except: [:new, :create] do
-    resources :products
+  resources :users, except: [:new, :create, :put] do
+    resources :products, except: [:show, :edit, :update, :destroy, :put]
   end
   
-  resources :products do
-    resources :solutions
+  resources :products, except: :put do
+    resources :solutions, only: [:new, :create]
   end
 
-  resources :products
-  resources :solutions
+  resources :solutions, only: [:new, :create, :index]
 
   get '/', to: 'welcome#home'
   get '/signup', to: "users#new", as: "signup"

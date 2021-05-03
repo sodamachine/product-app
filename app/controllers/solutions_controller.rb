@@ -3,7 +3,11 @@ class SolutionsController < ApplicationController
     before_action :require_login
 
     def index
-        @solutions = Solution.all
+        if params[:issue]
+            @solutions = Solution.issue_search(params[:issue])
+        else
+            @solutions = Solution.all
+        end
     end
     
     def new
