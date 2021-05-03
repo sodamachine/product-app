@@ -1,12 +1,12 @@
 class SolutionsController < ApplicationController
 
     before_action :require_login
+    before_action :index_helper, only: :index
+    before_action :show_helper, except: [:index, :new, :create]
 
     def index
         if params[:issue]
             @solutions = Solution.issue_search(params[:issue])
-        else
-            @solutions = Solution.all
         end
     end
     

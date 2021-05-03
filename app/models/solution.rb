@@ -4,5 +4,5 @@ class Solution < ApplicationRecord
 
     validates_presence_of :issue, :ingredient, :description
 
-    scope(:issue_search, ->(issue) {self.where("issue.include?", issue)})
+    scope(:issue_search, ->(issue) {self.where("issue.downcase.include?(?)", issue)})
 end

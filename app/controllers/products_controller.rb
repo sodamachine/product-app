@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
     def new
         @product = Product.new
         @product.solutions.build(user: current_user)
-        @solutions = @product.solutions.select{|s| s.user_id == current_user.id}
+        set_measurements
     end
 
     def create
@@ -24,7 +24,7 @@ class ProductsController < ApplicationController
         if @product.save
             redirect_to product_path(@product)
         else
-            @solutions = @product.solutions.select{|s| s.user_id == current_user.id}
+            set_measurements
             render :new
         end
     end
@@ -37,7 +37,7 @@ class ProductsController < ApplicationController
         if @product.update(product_params)
             redirect_to product_path(@product)
         else
-            @solutions = @product.solutions.select{|s| s.user_id == current_user.id}
+            set_measurements
             render :edit
         end
     end
@@ -55,6 +55,10 @@ class ProductsController < ApplicationController
 
         def set_product
             @product = Product.find_by(id: params[:id])
+        end
+
+        def set_measurements
+            @solutions = @product.solutions.select{|s| s.user_id == current_user.id}
         end
 
 end
