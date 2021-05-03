@@ -1,21 +1,5 @@
 <h1>New Product</h1>
 
-<% @errors && @errors.each do |e| %>
-    <li><i><%=e%></i></li>
-<%end%><br>
+<%=render 'errors' %><br>
 
-<%=form_for @product do |f| %>
-    <%=f.label "Product Name:" %>
-    <%=f.text_field :name %>
-    <%=f.label "Brand:" %>
-    <%=f.text_field :brand %>
-    <%=f.label "Solutions:" %>
-    <%=f.fields_for :solutions do |s| %>
-        <%=s.label "Ingredient"%>
-        <%=s.text_field :ingredient %>
-        <%=s.label "Description" %>
-        <%=s.text_area :description%>
-    <%end%>
-    <%=f.submit "Add to my list" %>
-
-<%end%>
+<%=render 'form' %>
