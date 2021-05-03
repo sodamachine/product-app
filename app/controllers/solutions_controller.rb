@@ -22,8 +22,12 @@ class SolutionsController < ApplicationController
         if params[:item_id]
             @solution.product_id = params[:product_id]
         end
-        @solution.save
-        redirect_to products_path
+        if @solution.save
+            redirect_to products_path
+        else
+            @solutions = Solution.all
+            render :new
+        end
     end
 
     def edit
