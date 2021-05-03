@@ -1,5 +1,4 @@
 class Product < ApplicationRecord
-
     validates :name, presence: true, uniqueness: true
     validates :brand, presence: true
     has_many :solutions

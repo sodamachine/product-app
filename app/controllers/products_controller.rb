@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
     end
 
     def show
-        @product = Product.find_by(id: params[:id])
+        set_product
     end
 
     def new
@@ -24,11 +24,11 @@ class ProductsController < ApplicationController
     end
 
     def edit
-        @product = Product.find_by(id: params[:id])
+        set_product
     end
 
     def update
-        @product = Product.find_by(id: params[:id])
+        set_product
         if @product.update(product_params)
             redirect_to product_path(@product)
         else
@@ -38,8 +38,8 @@ class ProductsController < ApplicationController
     end
 
     def destroy
-        product = Product.find_by(id: params[:id])
-        product.delete
+        set_product
+        @product.delete
         redirect_to products_path
     end
 
@@ -47,6 +47,10 @@ class ProductsController < ApplicationController
 
         def product_params
             params.require(:product).permit(:name, :brand, solutions_attributes: [:ingredient, :description])
+        end
+
+        def set_product
+            @product = Product.find_by(id: params[:id])
         end
 
 end
