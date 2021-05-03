@@ -1,4 +1,5 @@
 class Solution < ApplicationRecord
     belongs_to :product
-    validates_presence_of :ingredient, :description
+    belongs_to :user
+    validates_presence_of :issue, :ingredient, :description
 end

@@ -17,7 +17,7 @@ class SolutionsController < ApplicationController
     private
 
         def solution_params
-            params.require(:solution).permit(:ingredient, :description, :product_id)
+            params.require(:solution).permit(:issue, :ingredient, :description, :product_id)
         end
 
 end

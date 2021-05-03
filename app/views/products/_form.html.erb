@@ -5,10 +5,12 @@
     <%=f.text_field :brand %>
     <%=f.label "Solutions:" %>
     <%=f.fields_for :solutions do |s| %>
+        <%=s.label "Issue"%>
+        <%=s.text_field :issue %>
         <%=s.label "Ingredient"%>
         <%=s.text_field :ingredient %>
         <%=s.label "Description" %>
         <%=s.text_area :description%>
     <%end%>
-    <%=f.submit "Add to my list" %>
+    <%=f.submit "Save" %>
 <%end%>

@@ -1,4 +1,6 @@
 <%= form_for(@solution) do |f|%>
+    <%=f.label "Issue"%>
+    <%=f.text_field(:issue)%>
     <%=f.label "Ingredient"%>
     <%=f.text_field(:ingredient)%>
     <%=f.label "Description"%>
