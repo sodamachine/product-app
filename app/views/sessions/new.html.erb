@@ -1,8 +1,8 @@
 <h1>Log In</h1>
 
-<%=render partial: "application/errors", locals: {errors: @errors} %><br>
+<%=render partial: "application/errors", locals: {errors: @errors} %>
 <br>
-
+<br>
 <%=form_for :user do |f| %>
     <%=f.label "Username"%>
     <%=f.text_field :username%>
@@ -12,5 +12,3 @@
 <%end%>
 <br>
 <%=link_to "Login with Facebook", '/auth/facebook', method: :post %>
-
-<%binding.pry%>

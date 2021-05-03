@@ -11,7 +11,6 @@ Rails.application.routes.draw do
 
   resources :solutions, only: [:new, :create, :index]
 
-  get '/', to: 'welcome#home'
   get '/signup', to: "users#new", as: "signup"
   post '/signup', to: "users#create"
   get '/login', to: "sessions#new", as: "login"

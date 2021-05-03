@@ -1,5 +1,5 @@
 <%if @product%>
-  <h3><%=@product.name%></h3>
+  <h3><%=@product.name%> (<%=@product.brand%>)</h3>
 <%end%>
 
 <%=render partial: "application/errors", locals: {errors: @solution.errors.full_messages} %><br>

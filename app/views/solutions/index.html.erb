@@ -3,6 +3,7 @@
 <%= form_tag solutions_path, method: :get do %>
     <%=text_field_tag :issue %>
     <%=submit_tag "Search" %>
-<%end%><br>
+<%end%>
+<br>
 <br>
 <%=render partial: 'solutions', locals: {solutions: @solutions, index: true}%>

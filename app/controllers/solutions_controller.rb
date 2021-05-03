@@ -1,12 +1,12 @@
 class SolutionsController < ApplicationController
 
     before_action :require_login
-    before_action :index_helper, only: :index
-    before_action :show_helper, except: [:index, :new, :create]
-
+    
     def index
         if params[:issue]
             @solutions = Solution.issue_search(params[:issue])
+        else
+            @solutions = Solution.all
         end
     end
     
@@ -14,6 +14,7 @@ class SolutionsController < ApplicationController
         if params[:product_id]
             @product = Product.find_by(id: params[:product_id])
             @solution = @product.solutions.build
+            @products = Product.all
         else
             @solution = Solution.new
             @products = Product.all
@@ -21,23 +22,32 @@ class SolutionsController < ApplicationController
     end
 
     def create
-        @solution = Solution.create(solution_params)
+        @solution = Solution.new(solution_params)
         @solution.user = current_user
         if params[:item_id]
             @solution.product_id = params[:product_id]
         end
         if @solution.save
-            redirect_to products_path
+            redirect_to product_path(@product)
         else
-            @solutions = Solution.all
+            @errors = @product.errors.full_messages
+            #@products = Product.all
             render :new
         end
     end
 
     def edit
+        #redirect_to solutions_path
     end
 
     def update
+        if @solution.user != current_user
+            @errors = @solution.errors.full_messages
+            render :edit
+        else
+        #if @solution.update(solution_params)
+            redirect_to solutions_path
+        end
     end
 
     private

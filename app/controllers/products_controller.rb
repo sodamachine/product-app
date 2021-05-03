@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
     def new
         @product = Product.new
         @product.solutions.build(user: current_user)
-        set_measurements
+        set_solutions
     end
 
     def create
@@ -24,21 +24,26 @@ class ProductsController < ApplicationController
         if @product.save
             redirect_to product_path(@product)
         else
-            set_measurements
+            @errors = @product.errors.full_messages
             render :new
         end
     end
 
     def edit
-        @solutions = @product.solutions.where(user_id: current_user.id)
+        #if !@product.users.include?(current_user)
+        #    redirect_to products_path
+        #end
+        #@solutions = @product.solutions.where(user_id: current_user.id)
     end
 
     def update
-        if @product.update(product_params)
-            redirect_to product_path(@product)
-        else
-            set_measurements
+        set_solutions
+        if !@solutions.include?(current_user)
+            @errors = @product.errors.full_messages
             render :edit
+        else
+        #if @product.update(product_params)
+            redirect_to product_path(@product)
         end
     end
 
@@ -57,7 +62,7 @@ class ProductsController < ApplicationController
             @product = Product.find_by(id: params[:id])
         end
 
-        def set_measurements
+        def set_solutions
             @solutions = @product.solutions.select{|s| s.user_id == current_user.id}
         end
 

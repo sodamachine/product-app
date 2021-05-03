@@ -6,8 +6,8 @@ class SessionsController < ApplicationController
 
     def create
         @user = User.find_by(username: params[:user][:username])
-        if @user && @user.authenticate(params[:user][:username])
-            session[:user_id] = @user_id
+        if @user && @user.authenticate(params[:user][:password])
+            session[:user_id] = @user.id
             redirect_to user_products_path(@user)
         elsif @user
             @errors = ["Invalid Password"]
@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
         end
         if @user.save
             session[:user_id] = @user.id
-            redirect_to products_path
+            redirect_to user_products_path(@user)
         else
             redirect_to signup_path
         end
@@ -38,7 +38,7 @@ class SessionsController < ApplicationController
     private
 
         def auth_hash
-            request.env['omniauth.auth']
+            self.request.env['omniauth.auth']
         end
 
 end
