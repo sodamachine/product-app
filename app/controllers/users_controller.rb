@@ -8,12 +8,11 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.save
             @user.id = session[:user_id]
-            redirect_to products_path
+            redirect_to user_products_path(@user)
         else
             render :new
         end
     end
-
 
     private
 
