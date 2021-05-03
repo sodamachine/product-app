@@ -1,11 +1,13 @@
 class ProductsController < ApplicationController
 
+    before_action :set_product, except: [:index, :new, :create]
+
     def index
         @products = Product.all
     end
 
     def show
-        set_product
+        #set_product
     end
 
     def new
@@ -24,11 +26,11 @@ class ProductsController < ApplicationController
     end
 
     def edit
-        set_product
+        #set_product
     end
 
     def update
-        set_product
+        #set_product
         if @product.update(product_params)
             redirect_to product_path(@product)
         else
@@ -38,7 +40,7 @@ class ProductsController < ApplicationController
     end
 
     def destroy
-        set_product
+        #set_product
         @product.delete
         redirect_to products_path
     end
