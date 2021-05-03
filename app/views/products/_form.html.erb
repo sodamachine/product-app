@@ -4,7 +4,7 @@
     <%=f.label "Brand:" %>
     <%=f.text_field :brand %><br><br>
     <%=f.label "Solutions:" %><br>
-    <%=f.fields_for :solutions do |s| %>
+    <%=f.fields_for :solutions, @solutions do |s| %>
         <%=s.label "Issue:" %>
         <%=s.text_field :issue %>
         <%=s.label "Ingredient:" %>

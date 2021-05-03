@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
     def new
-        @errors = []]
+        @errors = []
     end
 
     def create
@@ -18,12 +18,12 @@ class SessionsController < ApplicationController
         end
     end
 
-    def create_github
-        user = User.find_or_create_by(username: auth_hash['info']['email']) do |u|
-            u.password = 'github'
+    def create_fb
+        @user = User.find_or_create_by(username: auth_hash['info']['email']) do |u|
+            u.password = 'facebook'
         end
-        if user.save
-            session[:user_id] = user.id
+        if @user.save
+            session[:user_id] = @user.id
             redirect_to products_path
         else
             redirect_to signup_path
@@ -38,7 +38,7 @@ class SessionsController < ApplicationController
     private
 
         def auth_hash
-            self.request.env['omniauth.auth']
+            request.env['omniauth.auth']
         end
 
 end

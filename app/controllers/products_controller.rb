@@ -14,7 +14,8 @@ class ProductsController < ApplicationController
 
     def new
         @product = Product.new
-        @product.solutions.build
+        @product.solutions.build(user: current_user)
+        @solutions = @product.solutions.select{|s| s.user_id == current_user.id}
     end
 
     def create
@@ -23,14 +24,20 @@ class ProductsController < ApplicationController
         if @product.save
             redirect_to product_path(@product)
         else
+            @solutions = @product.solutions.select{|s| s.user_id == current_user.id}
             render :new
         end
+    end
+
+    def edit
+        @solutions = @product.solutions.where(user_id: current_user.id)
     end
 
     def update
         if @product.update(product_params)
             redirect_to product_path(@product)
         else
+            @solutions = @product.solutions.select{|s| s.user_id == current_user.id}
             render :edit
         end
     end
@@ -43,7 +50,7 @@ class ProductsController < ApplicationController
     private
 
         def product_params
-            params.require(:product).permit(:name, :brand, solutions_attributes: [:issue, :ingredient, :description])
+            params.require(:product).permit(:name, :brand, solutions_attributes: [:issue, :ingredient, :description, :user_id, :id])
         end
 
         def set_product
