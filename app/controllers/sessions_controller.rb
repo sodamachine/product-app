@@ -18,6 +18,9 @@ class SessionsController < ApplicationController
         end
     end
 
+    def create_fb
+    end
+
     def destroy
         session.clear
         redirect_to '/signup'
