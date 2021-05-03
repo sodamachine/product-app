@@ -5,6 +5,20 @@ class UsersController < ApplicationController
     end
 
     def create
+        @user = User.new(user_params)
+        if @user.save
+            @user.id = session[:user_id]
+            redirect_to products_path
+        else
+            render :new
+        end
     end
+
+
+    private
+
+        def user_params
+            params.require(:user).permit(:username, :password, :password_confirmation)
+        end
 
 end

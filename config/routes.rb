@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     resources :solutions
   end
 
+  resources :products
+  resources :solutions
+
   get '/signup', to: "users#new", as: "signup"
   post '/signup', to: "users#create"
   get '/login', to: "sessions#new", as: "login"
