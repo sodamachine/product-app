@@ -1,1 +1,8 @@
-<%=render partial: 'solutions', locals: {solutions: @solutions}%>
+<h1>Search By Solution</h1>
+
+<%= form_tag solutions_path, method: :get do %>
+    <%=text_field_tag :issue %>
+    <%=submit_tag "Search" %>
+<%end%>
+
+<%=render partial: 'solutions', locals: {solutions: @solutions, index: true}%>
