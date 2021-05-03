@@ -12,11 +12,12 @@ Rails.application.routes.draw do
   resources :products
   resources :solutions
 
+  get '/', to: 'welcome#home'
   get '/signup', to: "users#new", as: "signup"
   post '/signup', to: "users#create"
   get '/login', to: "sessions#new", as: "login"
   post '/login', to: "sessions#create"
   post '/logout', to: "sessions#destroy"
-  get "/auth/facebook/callback", to: "sessions#create_fb"
+  get "/auth/github/callback", to: "sessions#create_github"
 
 end

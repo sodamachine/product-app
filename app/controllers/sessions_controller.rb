@@ -18,13 +18,13 @@ class SessionsController < ApplicationController
         end
     end
 
-    def create_fb
-        user = User.find_or_create_by(username: self.request.env['onmiauth.auth']['info']['email']) do |u|
-            u.password = 'facebook'
+    def create_github
+        user = User.find_or_create_by(username: auth_hash['info']['email']) do |u|
+            u.password = 'github'
         end
         if user.save
             session[:user_id] = user.id
-            redirect_to user_products_path(user)
+            redirect_to products_path
         else
             redirect_to signup_path
         end
@@ -34,5 +34,11 @@ class SessionsController < ApplicationController
         session.clear
         redirect_to '/signup'
     end
+
+    private
+
+        def auth_hash
+            self.request.env['omniauth.auth']
+        end
 
 end
