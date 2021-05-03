@@ -1,5 +1,7 @@
 class SolutionsController < ApplicationController
 
+    before_action :require_login
+
     def index
         @solutions = Solution.all
     end

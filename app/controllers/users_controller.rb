@@ -1,5 +1,11 @@
 class UsersController < ApplicationController
 
+    before_action :require_login, except: [:new, :create]
+
+    def index
+        @users = User.all
+    end
+
     def new
         @user = User.new
     end
@@ -13,6 +19,9 @@ class UsersController < ApplicationController
             @errors = @user.errors.full_messages
             render :new
         end
+    end
+
+    def show
     end
 
     private

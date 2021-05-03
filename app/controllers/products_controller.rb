@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
 
     before_action :set_product, except: [:index, :new, :create]
+    before_action :require_login
 
     def index
         if params[:user_id]
