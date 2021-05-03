@@ -28,7 +28,7 @@ class SolutionsController < ApplicationController
             @solution.product_id = params[:product_id]
         end
         if @solution.save
-            redirect_to product_path(@product)
+            redirect_to solutions_path
         else
             @errors = @product.errors.full_messages
             #@products = Product.all

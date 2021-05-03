@@ -1,24 +1,22 @@
-# README
+# Product-App
+Product-App is an application that allows users to save personal lists of favorite skincare products to address specific concerns/solutions, which are associated with user accounts.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Installation
+To install the gems, this application depends on to run successfully, run:
+```bash
+bundle install
+```
 
-Things you may want to cover:
+## Usage
+Click this link to see a brief description on how to use the program: YouTube demo of [Product-App](https://youtu.be/ZGAcUDP5K4I)
 
-* Ruby version
+## Contributing
+Bug reports and pull requests are welcome via GitHub at [https://github.com/stephohn/product-app](https://github.com/stephohn/product-app). 
 
-* System dependencies
+This project is intended for open collaboration and educational purposes. Contributors are welcomed.
 
-* Configuration
+## Code of Conduct
+[Contributor Covenant](https://www.contributor-covenant.org/)
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## License
+[MIT](https://choosealicense.com/licenses/mit/)

@@ -37,19 +37,23 @@ class ProductsController < ApplicationController
     end
 
     def update
-        set_solutions
-        if !@solutions.include?(current_user)
-            @errors = @product.errors.full_messages
-            render :edit
-        else
-        #if @product.update(product_params)
+        if @product.users.include?(current_user)
+            @product.update(product_params)
             redirect_to product_path(@product)
+        else
+            @errors = ["Invalid Action: Unable to Edit Product"]
+            render :edit
         end
     end
 
     def destroy
-        @product.delete
-        redirect_to products_path
+        if @product.users.include?(current_user)
+            @product.delete
+            redirect_to products_path
+        else
+            @errors = ["Invalid Action: Unable to Delete Product"]
+            render :show
+        end
     end
 
     private
