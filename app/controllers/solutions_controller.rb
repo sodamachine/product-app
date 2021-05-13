@@ -24,14 +24,14 @@ class SolutionsController < ApplicationController
     def create
         @solution = Solution.new(solution_params)
         @solution.user = current_user
-        if params[:item_id]
+        if params[:product_id]
             @solution.product_id = params[:product_id]
         end
         if @solution.save
             redirect_to solutions_path
         else
-            @errors = @product.errors.full_messages
-            #@products = Product.all
+            @errors = @solution.errors.full_messages
+            @products = Product.all
             render :new
         end
     end
@@ -45,7 +45,7 @@ class SolutionsController < ApplicationController
             @errors = @solution.errors.full_messages
             render :edit
         else
-        #if @solution.update(solution_params)
+            @solution.update(solution_params)
             redirect_to solutions_path
         end
     end

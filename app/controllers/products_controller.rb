@@ -6,9 +6,9 @@ class ProductsController < ApplicationController
     def index
         if params[:user_id]
             user = User.find_by(id: params[:user_id])
-            @products = user.products
+            @products = user.products.alpha_order
         else
-            @products = Product.all
+            @products = Product.all.alpha_order
         end
     end
 

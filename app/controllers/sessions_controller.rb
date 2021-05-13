@@ -19,14 +19,15 @@ class SessionsController < ApplicationController
     end
 
     def create_fb
-        @user = User.find_or_create_by(username: auth_hash['info']['email']) do |u|
-            u.password = 'facebook'
+        @user = User.find_or_create_by(uid: auth_hash['uid']) do |u|
+            u.username = auth_hash['info']['email']
+            u.password = SecureRandom.hex
         end
         if @user.save
             session[:user_id] = @user.id
             redirect_to user_products_path(@user)
         else
-            redirect_to signup_path
+            redirect_to '/login'
         end
     end
 
@@ -38,7 +39,7 @@ class SessionsController < ApplicationController
     private
 
         def auth_hash
-            self.request.env['omniauth.auth']
+            request.env['omniauth.auth']
         end
 
 end

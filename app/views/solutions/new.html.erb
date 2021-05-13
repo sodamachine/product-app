@@ -2,9 +2,10 @@
   <h3><%=@product.name%> (<%=@product.brand%>)</h3>
 <%end%>
 
-<%=render partial: "application/errors", locals: {errors: @solution.errors.full_messages} %><br>
+<%=render partial: "application/errors", locals: {errors: @errors} %>
 <br>
-<%= form_for(@solution, url: form_url_helper(@product)) do |f|%>
+<br>
+<%= form_for @solution do |f|%>
     <%=f.label "Issue"%>
     <%=f.text_field(:issue)%>
     <%=f.label "Ingredient"%>

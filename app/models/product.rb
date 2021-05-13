@@ -4,7 +4,9 @@ class Product < ApplicationRecord
     
     has_many :solutions
     has_many :users, through: :solutions
-
+    
     accepts_nested_attributes_for :solutions
+
+    scope :alpha_order, -> {order(name: :asc)}
 
 end
